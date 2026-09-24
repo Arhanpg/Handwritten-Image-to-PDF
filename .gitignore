@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+*.tmp.pdf
+# Never commit private handwritten datasets or generated PDFs
+input/
+output/
+All PDFs/
+*.pdf
