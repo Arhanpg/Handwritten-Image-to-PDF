@@ -163,7 +163,7 @@ def process_folder(folder: Path, output: Path, batch_size: int, do_deskew: bool)
             if len(pending) >= batch_size:
                 pages.extend(gpu_sharpen(pending))
                 pending.clear()
-        except Exception as exc:
+        except Exception:
             failed += 1
             LOG.exception("Failed to process %s", path)
     if pending:
