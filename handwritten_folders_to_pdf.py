@@ -17,7 +17,7 @@ from tqdm import tqdm
 try:
     import torch
     import torch.nn.functional as F
-except Exception:
+except (ImportError, OSError):
     torch = None
     F = None
 
@@ -148,7 +148,7 @@ def gpu_status() -> tuple[bool, str]:
         return False, "PyTorch is not installed"
     try:
         return (True, torch.cuda.get_device_name(0)) if torch.cuda.is_available() else (False, "PyTorch is installed, but CUDA is unavailable")
-    except Exception as exc:
+    except RuntimeError as exc:
         return False, f"CUDA check failed: {exc}"
 
 def process_folder(folder: Path, output: Path, batch_size: int, do_deskew: bool) -> tuple[int, int]:
@@ -165,7 +165,7 @@ def process_folder(folder: Path, output: Path, batch_size: int, do_deskew: bool)
                 pending.clear()
         except Exception as exc:
             failed += 1
-            LOG.exception("Failed to process %s: %s", path, exc)
+            LOG.exception("Failed to process %s", path)
     if pending:
         pages.extend(gpu_sharpen(pending))
     if pages:
