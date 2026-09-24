@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "handwritten-image-to-pdf"
+version = "0.1.0"
+description = "Local-first handwritten image folder to A4 PDF converter with optional CUDA acceleration."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Arhan Ghosarwade" }]
+dependencies = [
+  "numpy>=1.26",
+  "opencv-python>=4.9",
+  "Pillow>=10.0",
+  "tqdm>=4.66",
+  "PyMuPDF>=1.24",
+]
+
+[project.urls]
+Homepage = "https://github.com/Arhanpg/Handwritten-Image-to-PDF"
+Repository = "https://github.com/Arhanpg/Handwritten-Image-to-PDF"
+Issues = "https://github.com/Arhanpg/Handwritten-Image-to-PDF/issues"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
